@@ -142,9 +142,39 @@ window.addEventListener('scroll', () => {
 // 视频背景自动播放确保
 window.addEventListener('DOMContentLoaded', () => {
     const heroVideo = document.getElementById('heroBgVideo');
-    if (heroVideo) {
+    const hero = document.querySelector('.hero');
+    
+    if (heroVideo && hero) {
+        // 检查视频是否支持
+        const canPlayVideo = heroVideo.canPlayType && heroVideo.canPlayType('video/mp4') !== '';
+        
+        // 视频加载失败时确保背景图片显示
+        heroVideo.addEventListener('error', () => {
+            hero.style.backgroundImage = "url('images/bg.png')";
+            heroVideo.style.display = 'none';
+        });
+        
+        // 视频无法播放时显示背景图片
+        heroVideo.addEventListener('loadstart', () => {
+            // 设置超时，如果视频在3秒内没有开始播放，显示背景图片
+            setTimeout(() => {
+                if (heroVideo.readyState < 2) { // HAVE_CURRENT_DATA
+                    hero.style.backgroundImage = "url('images/bg.png')";
+                }
+            }, 3000);
+        });
+        
+        // 视频可以播放时，视频会覆盖背景图片（通过z-index）
+        heroVideo.addEventListener('canplay', () => {
+            heroVideo.style.display = 'block';
+        });
+        
+        // 尝试播放视频
         heroVideo.play().catch(error => {
             console.log('视频自动播放失败:', error);
+            // 播放失败时确保背景图片显示
+            hero.style.backgroundImage = "url('images/bg.png')";
+            heroVideo.style.display = 'none';
         });
     }
 });

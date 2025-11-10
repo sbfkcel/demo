@@ -308,6 +308,11 @@ body {
     text-align: center;
     margin-top: 80px;
     overflow: hidden;
+    /* 背景图片作为视频的备用方案 */
+    background-image: url('images/bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .hero-bg-video {
@@ -319,7 +324,7 @@ body {
     width: auto;
     height: auto;
     transform: translate(-50%, -50%);
-    z-index: 0;
+    z-index: 1;
     object-fit: cover;
     /* 移动端优化 */
     -webkit-transform: translate(-50%, -50%);
