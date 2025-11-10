@@ -1289,6 +1289,13 @@ body {
     gap: 3rem;
 }
 
+.contact-form-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
 .contact-form-container h3,
 .contact-info h3 {
     font-size: 2rem;
@@ -1297,10 +1304,10 @@ body {
 }
 
 .contact-form {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: var(--shadow);
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
 }
 
 .form-group {
@@ -1908,9 +1915,13 @@ body {
         margin-bottom: 1.5rem;
     }
 
-    .contact-form,
+    .contact-form-container,
     .contact-info {
         padding: 1.5rem;
+    }
+    
+    .contact-form {
+        padding: 0;
     }
 
     .form-group {
