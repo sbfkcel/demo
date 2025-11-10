@@ -93,17 +93,28 @@ if (languageBtn && languageDropdown) {
     });
 }
 
-// 平滑滚动
+// 平滑滚动 - 移动端优化
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            const offsetTop = target.offsetTop - 80;
-            window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
-            });
+            // 移动端导航栏高度调整
+            const isMobile = window.innerWidth <= 768;
+            const offsetTop = target.offsetTop - (isMobile ? 60 : 80);
+            
+            // 使用平滑滚动，如果不支持则使用scrollIntoView
+            if ('scrollBehavior' in document.documentElement.style) {
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            } else {
+                // 降级方案
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                window.scrollBy(0, -(isMobile ? 60 : 80));
+            }
+            
             // 关闭移动端菜单
             if (navMenu) {
                 navMenu.classList.remove('active');
@@ -263,10 +274,53 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// 窗口大小改变时关闭移动端菜单
-window.addEventListener('resize', () => {
-    if (window.innerWidth > 768 && navMenu) {
-        navMenu.classList.remove('active');
+// 触摸事件优化 - 移动端菜单关闭
+document.addEventListener('touchstart', (e) => {
+    if (navMenu && navToggle && navMenu.classList.contains('active')) {
+        if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+            navMenu.classList.remove('active');
+        }
     }
+}, { passive: true });
+
+// 窗口大小改变时关闭移动端菜单
+let resizeTimer;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+        if (window.innerWidth > 768 && navMenu) {
+            navMenu.classList.remove('active');
+        }
+    }, 250);
 });
+
+// 移动端滚动优化 - 防止滚动穿透
+let touchStartY = 0;
+document.addEventListener('touchstart', (e) => {
+    if (navMenu && navMenu.classList.contains('active')) {
+        touchStartY = e.touches[0].clientY;
+    }
+}, { passive: true });
+
+document.addEventListener('touchmove', (e) => {
+    if (navMenu && navMenu.classList.contains('active')) {
+        const touchY = e.touches[0].clientY;
+        const menu = navMenu;
+        const scrollTop = menu.scrollTop;
+        const scrollHeight = menu.scrollHeight;
+        const clientHeight = menu.clientHeight;
+        
+        // 如果菜单可以滚动，允许滚动
+        if (scrollHeight > clientHeight) {
+            const isScrollingUp = touchY > touchStartY;
+            const isScrollingDown = touchY < touchStartY;
+            
+            // 如果滚动到顶部或底部，阻止默认行为
+            if ((scrollTop === 0 && isScrollingUp) || 
+                (scrollTop + clientHeight >= scrollHeight && isScrollingDown)) {
+                e.preventDefault();
+            }
+        }
+    }
+}, { passive: false });
 
