@@ -706,6 +706,7 @@ body {
     bottom: 0;
     width: 2px;
     background: var(--border-color);
+    transform: translateX(1px); /* 让线的中心对齐 */
 }
 
 .timeline-item {
@@ -724,6 +725,7 @@ body {
     border-radius: 50%;
     border: 4px solid white;
     box-shadow: var(--shadow);
+    transform: translateX(calc(-50% - 1px)); /* 圆点中心对齐到线的中心（线中心在1px位置） */
 }
 
 .timeline-content h4 {
@@ -772,11 +774,44 @@ body {
 }
 
 .chart-item {
+    width: 100%;
+    padding: 0;
+    border-radius: 8px;
+    background: #f0f4f8;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.chart-bar {
     padding: 1.5rem;
-    border-radius: 5px;
+    border-radius: 8px;
     color: white;
     font-weight: 600;
     text-align: center;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    transition: width 0.5s ease, box-shadow 0.3s;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chart-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
+    border-radius: 8px;
+}
+
+.chart-item:hover .chart-bar {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .risk-grid {
@@ -1691,6 +1726,11 @@ body {
         padding-bottom: 1.5rem;
     }
 
+    .timeline-marker {
+        left: -1.25rem;
+        transform: translateX(calc(-50% - 1px));
+    }
+
     /* 投资与风控 */
     .investment {
         padding: 3rem 0;
@@ -1714,11 +1754,17 @@ body {
 
     .chart-placeholder {
         padding: 1.5rem;
+        background: white;
     }
 
     .chart-item {
+        padding: 0;
+    }
+
+    .chart-bar {
         padding: 1rem;
         font-size: 0.9rem;
+        min-height: 45px;
     }
 
     .risk-grid,
