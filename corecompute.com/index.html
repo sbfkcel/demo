@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORECOMPUTE</title>
+</head>
+
+<body>
+    <script>
+        // Auto-redirect according to browser language
+        (function () {
+            function getLanguageByTimezone() {
+                const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                const chineseTimezones = [
+                    'Asia/Shanghai', 
+                    'Asia/Chongqing',
+                    'Asia/Harbin',
+                    'Asia/Urumqi',
+                    'Asia/Taipei',
+                    'Asia/Hong_Kong',
+                    'Asia/Macau',
+                    'Asia/Singapore',
+                    'Asia/Kuala_Lumpur'
+                ];
+                if (chineseTimezones.includes(timezone)) {
+                    return 'cn';
+                }
+                return 'en';
+            }
+            var lang = getLanguageByTimezone() || navigator.language || navigator.userLanguage;
+            if (/zh|cn/i.test(lang)) {
+                window.location.replace('./cn/');
+            } else {
+                window.location.replace('./en/');
+            }
+        })();
+    </script>
+</body>
+
+</html>

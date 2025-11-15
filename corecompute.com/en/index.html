@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CoreCompute EB-5 Data Center Project | Rural TEA Priority Approval</title>
-    <link rel="stylesheet" href="styles.css?v=1.0.2">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css?v=1.0.2">
+    <link rel="stylesheet" href="../styles/styles.css?v=1.0.2">
+    <link rel="stylesheet" href="../styles/fontawesome.css?v=1.0.2">
 </head>
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="container">
             <div class="nav-brand">
-                <img src="images/logo.png" alt="CoreCompute EB-5" class="nav-logo">
+                <img src="../images/logo.png" alt="CoreCompute EB-5" class="nav-logo">
+                <span class="nav-brand-name">CORECOMPUTE</span>
             </div>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#home" class="nav-link active">Home</a></li>
@@ -46,7 +47,7 @@
     <!-- Home Hero Section -->
     <section id="home" class="hero">
         <video class="hero-bg-video" id="heroBgVideo" autoplay muted loop playsinline>
-            <source src="images/bg.mp4" type="video/mp4">
+            <source src="../images/bg.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
         <div class="hero-content">
@@ -162,7 +163,7 @@
                     </ul>
                 </div>
                 <div class="detail-image">
-                    <div class="placeholder-image">Data Center Concept Image</div>
+                    <img src="../images/exterior0.jpg" alt="Data Center Exterior" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
                 </div>
             </div>
 
@@ -202,7 +203,7 @@
                     </div>
                 </div>
                 <div class="detail-image">
-                    <div class="placeholder-image">Georgia Location Map</div>
+                    <img src="../images/exterior1.jpg" alt="Data Center Exterior" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
                 </div>
             </div>
 
@@ -219,7 +220,38 @@
                     </ul>
                 </div>
                 <div class="detail-image">
-                    <div class="placeholder-image">Developer Success Cases</div>
+                    <div class="carousel-container">
+                        <div class="carousel-slides" id="successCasesCarousel">
+                            <div class="carousel-slide active">
+                                <img src="../images/case1.jpg" alt="Success Case 1">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="../images/case2.jpg" alt="Success Case 2">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="../images/case3.jpg" alt="Success Case 3">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="../images/case4.jpg" alt="Success Case 4">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="../images/case5.jpg" alt="Success Case 5">
+                            </div>
+                        </div>
+                        <!-- <button class="carousel-btn carousel-prev" aria-label="Previous">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carousel-btn carousel-next" aria-label="Next">
+                            <i class="fas fa-chevron-right"></i>
+                        </button> -->
+                        <div class="carousel-indicators">
+                            <span class="indicator active" data-slide="0"></span>
+                            <span class="indicator" data-slide="1"></span>
+                            <span class="indicator" data-slide="2"></span>
+                            <span class="indicator" data-slide="3"></span>
+                            <span class="indicator" data-slide="4"></span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -276,21 +308,7 @@
                 <div class="finance-structure">
                     <div class="structure-chart">
                         <div class="chart-placeholder">
-                            <div class="chart-item" style="background: #f0f4f8;">
-                                <div class="chart-bar" style="width: 40%; background: #4A90E2;">
-                                    <span>EB-5 Funds 40%</span>
-                                </div>
-                            </div>
-                            <div class="chart-item" style="background: #f0f4f8;">
-                                <div class="chart-bar" style="width: 35%; background: #50C878;">
-                                    <span>Senior Loan 35%</span>
-                                </div>
-                            </div>
-                            <div class="chart-item" style="background: #f0f4f8;">
-                                <div class="chart-bar" style="width: 25%; background: #FF6B6B;">
-                                    <span>Developer Equity 25%</span>
-                                </div>
-                            </div>
+                            <div id="financeChart" lang="en"></div>
                         </div>
                     </div>
                     <div class="structure-details">
@@ -420,10 +438,7 @@
                 <div class="tea-content">
                     <p>TEA (Targeted Employment Area) refers to areas with unemployment rates 150% above the national average, or rural areas with populations under 20,000. EB-5 projects in TEA areas can enjoy lower investment thresholds and priority approval treatment.</p>
                     <div class="tea-certificate">
-                        <div class="certificate-placeholder">
-                            <i class="fas fa-certificate"></i>
-                            <p>Official TEA Designation Letter</p>
-                        </div>
+                        <img src="../images/tea.png" alt="Official TEA Designation Letter">
                     </div>
                 </div>
             </div>
@@ -500,7 +515,7 @@
                     </div>
                     <h3>EB-5 Project Memorandum</h3>
                     <p>Condensed PDF project introduction with core project information</p>
-                    <a href="#" class="btn-download">Download PDF</a>
+                    <a href="../static/eb5_memorandum-en.pdf" class="btn-download" target="_blank">Download PDF</a>
                 </div>
                 <div class="resource-card">
                     <div class="resource-icon">
@@ -508,7 +523,7 @@
                     </div>
                     <h3>Business Plan Summary</h3>
                     <p>Non-confidential summary version of business plan for in-depth project details</p>
-                    <a href="#" class="btn-download">Download PDF</a>
+                    <a href="../static/eb5_business_plan-en.pdf" class="btn-download" target="_blank">Download PDF</a>
                 </div>
                 <div class="resource-card">
                     <div class="resource-icon">
@@ -516,7 +531,7 @@
                     </div>
                     <h3>Frequently Asked Questions</h3>
                     <p>Summary of questions about investment, immigration, and project</p>
-                    <a href="#" class="btn-download">View FAQ</a>
+                    <a href="https://corecompute.zohodesk.com/portal" target="_blank" rel="noopener noreferrer" class="btn-download">View FAQ</a>
                 </div>
             </div>
         </div>
@@ -555,7 +570,7 @@
                         <i class="fas fa-envelope"></i>
                         <div>
                             <strong>Project Official Email</strong>
-                            <p>info@corecompute-eb5.com</p>
+                            <p>info@core-compute.com</p>
                         </div>
                     </div>
                     <div class="info-item">
@@ -569,7 +584,7 @@
                         <i class="fas fa-map-marker-alt"></i>
                         <div>
                             <strong>Project Address</strong>
-                            <p>Georgia Data Center Project Address</p>
+                            <p>SMITH CENTRAL ATLANTIC</p>
                         </div>
                     </div>
                     <div class="info-item">
@@ -606,13 +621,17 @@
                     <p>This website content is for reference only and does not constitute investment advice. Investment involves risks, please make decisions carefully.</p>
                 </div>
             </div>
+            <div class="footer-disclaimer">This website does not constitute an offer to sell any security. The information on this website does not constitute an offer to sell or a solicitation of an offer to buy an interest in any investment or for the provision of any investment management or advisory services. Any such offer or solicitation will be pursuant to exemptions from registration requirements set out in applicable securities laws and made only by means of delivery of a confidential private offering memorandum relating to a particular investment to qualified investors in those jurisdictions where permitted by law.</div>
             <div class="footer-bottom">
                 <p>&copy; 2024 CoreCompute EB-5. All rights reserved.</p>
             </div>
         </div>
     </footer>
-
-    <script src="script.js?v=1.0.2"></script>
+    <script src="../js/highcharts.js"></script>
+    <script src="../js/highcharts-3d.js"></script>
+    <script src="../js/script.js?v=1.0.2"></script>
+    <script>window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}</script>
+    <script id="zsiqscript" src="https://salesiq.zoho.com/widget?wc=siqe17de9b3908c75808d9bdaa0bac10229f8166e4a0ae4c733ed91b63f3c2d2f3d" defer></script>
 </body>
 </html>
 
